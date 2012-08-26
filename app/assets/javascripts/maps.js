@@ -13,9 +13,9 @@ var measure = {
 
 function initialize() {
 	// var chicago = new google.maps.LatLng(41.879535, -87.624333);
-	var houston = new google.maps.LatLng(29.818592, -95.372137);
+	var houston = new google.maps.LatLng(29.75, -95.40);
 	var myOptions = {
-		zoom: 10,
+		zoom: 14,
 		center: houston,
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		draggableCursor: "crosshair"

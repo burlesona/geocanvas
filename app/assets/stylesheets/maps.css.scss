@@ -24,6 +24,11 @@
 		span.value { margin-right: 3px; }
 		span.value:after { content: "\00B0"; }
 	}
+
+	div.info { margin-top: $baseline; }
 }
 
-h1.branding { font-size: 18px; color: #79A341; }
+h1.branding {
+	font-size: 18px; color: $color1;
+	small { font-size: 12px; text-transform: uppercase; font-weight: 300;}
+}

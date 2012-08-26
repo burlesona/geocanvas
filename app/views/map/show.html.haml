@@ -2,15 +2,17 @@
 
 #toolbar
 	.segment#location
-		%h1.branding geoCANVAS
+		%h1.branding
+			geoCANVAS
+			%small alpha
 		= form_tag '/', id: 'location_search' do
 			= text_field_tag :lstring, "Houston"
 			= button_tag 'Search', id: 'location_search'
 		.coords
 			%span.text Lat:
-			%span.value#mlat 29
+			%span.value#mlat 29.75
 			%span.text Lng:
-			%span.value#mlon 95
+			%span.value#mlon -95.40
 
 	.segment#distances
 		.input
@@ -38,3 +40,8 @@
 
 	.segment#clear
 		= button_tag 'Clear Markers', type: 'button', id: 'measure_reset'
+
+		.info
+			A service of
+			= link_to("Fourth Environment, LLC", "http://www.fourthenvironment.com") + "."
+			= "©#{Time.now.year.to_s}"
