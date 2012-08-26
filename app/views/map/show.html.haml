@@ -1,0 +1,38 @@
+#map_canvas
+
+#toolbar
+	.segment#coords
+		.input
+			= label_tag :mlat, "Latitude"
+			= text_field_tag :mlat
+
+		.input
+			= label_tag :mlon, "Longitude"
+			= text_field_tag :mlon
+
+	.segment#distances
+		.input
+			= label_tag :mdistanceft, "Feet"
+			= text_field_tag :mdistanceft
+
+		.input
+			= label_tag :mdistancemr, "Meters"
+			= text_field_tag :mdistancemr
+
+		.input
+			= label_tag :mdistancemi, "Miles"
+			= text_field_tag :mdistancemi
+
+		= hidden_field_tag :distancemeasured
+
+	.segment#area
+		.input
+			= label_tag :mareaft, "Sq. Feet"
+			= text_field_tag :mareaft
+		
+		.input
+			= label_tag :mareaac, "Acres"
+			= text_field_tag :mareaac
+
+	.segment#clear
+		= button_tag 'Clear Markers', type: 'button', id: 'measure_reset'
