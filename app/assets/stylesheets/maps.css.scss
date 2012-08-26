@@ -16,4 +16,14 @@
 		display: inline-block; width: 25%; margin-right: 5%;
 		font-weight: 700;
 	}
+
+	form#location_search { margin-bottom: $baseline/3; }
+
+	div.coords {
+		span.text { font-weight: 700; }
+		span.value { margin-right: 3px; }
+		span.value:after { content: "\00B0"; }
+	}
 }
+
+h1.branding { font-size: 18px; color: #79A341; }

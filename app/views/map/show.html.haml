@@ -1,14 +1,16 @@
 #map_canvas
 
 #toolbar
-	.segment#coords
-		.input
-			= label_tag :mlat, "Latitude"
-			= text_field_tag :mlat
-
-		.input
-			= label_tag :mlon, "Longitude"
-			= text_field_tag :mlon
+	.segment#location
+		%h1.branding geoCANVAS
+		= form_tag '/', id: 'location_search' do
+			= text_field_tag :lstring, "Houston"
+			= button_tag 'Search', id: 'location_search'
+		.coords
+			%span.text Lat:
+			%span.value#mlat 29
+			%span.text Lng:
+			%span.value#mlon 95
 
 	.segment#distances
 		.input

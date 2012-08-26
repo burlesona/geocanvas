@@ -1,5 +1,6 @@
 var poly;
 var map;
+var geocoder = new google.maps.Geocoder();
 
 // Create a meausure object to store our markers, MVCArrays, lines and polygons
 var measure = {
@@ -39,6 +40,36 @@ function initialize() {
 	});
 }
 
+function locationSearch() {
+	var string = document.getElementById('lstring').value
+	geocoder.geocode(
+		{address: string},
+		function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+				displayCoords(
+					results[0].geometry.location.lat(),
+					results[0].geometry.location.lng()
+				);
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    }
+  );
+}
+
+function displayCoords(lat,lng) {
+	document.getElementById('mlat').innerHTML = formatNumber(lat);
+	document.getElementById('mlon').innerHTML = formatNumber(lng);
+}
+
+function formatNumber( num ) {
+		x = num.toFixed(2);
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
+
 
 // Handles click events on a map, and adds a new point to the Polyline.
 // param {MouseEvent} mouseEvent
@@ -57,12 +88,19 @@ function addLatLng(event) {
 	});
 
 	//debugger
-	document.getElementById('mlat').value = path.getAt(path.getLength() - 1).lat();
-	document.getElementById('mlon').value = path.getAt(path.getLength() - 1).lng();
+	displayCoords(
+		path.getAt(path.getLength() - 1).lat(),
+		path.getAt(path.getLength() - 1).lng()
+	);
 
 	if (path.getLength() > 1) {
-		document.getElementById('mdistance').value = distVincenty(path.getAt(0).lat(),
-			path.getAt(0).lng(), path.getAt(1).lat(), path.getAt(1).lng());
+		document.getElementById('mdistance').value = 
+			distVincenty(
+				path.getAt(0).lat(),
+				path.getAt(0).lng(),
+				path.getAt(1).lat(),
+				path.getAt(1).lng()
+			);
 	}
 }
 
@@ -91,9 +129,10 @@ function measureAdd(latLng) {
 	// We'll need this later to update the MVCArray if the user moves the measure vertexes
 	var latLngIndex = measure.mvcLine.getLength() - 1;
 
-	//debugger
-	document.getElementById('mlat').value = measure.mvcLine.getAt(measure.mvcLine.getLength() - 1).lat();
-	document.getElementById('mlon').value = measure.mvcLine.getAt(measure.mvcLine.getLength() - 1).lng();
+	displayCoords(
+		measure.mvcLine.getAt(measure.mvcLine.getLength() - 1).lat(),
+		measure.mvcLine.getAt(measure.mvcLine.getLength() - 1).lng()
+	);
 
 	// When the user mouses over the measure vertex markers, change shape and color to make it obvious they can be moved
 	google.maps.event.addListener(marker, "mouseover", function () {
@@ -164,9 +203,9 @@ function measureCalc() {
 	//$("#mdistancemr").text(length.toFixed(1));
 	//$("#mdistancemi").text(length.toFixed(1)/1609.34);
 	//document.getElementById('mdistance').value = (length * 3.2808).toFixed(2);
-	document.getElementById('mdistanceft').value = (length * 3.2808).toFixed(2);
-	document.getElementById('mdistancemr').value = (length).toFixed(2);
-	document.getElementById('mdistancemi').value = (length/1609.34).toFixed(2);
+	document.getElementById('mdistanceft').value = formatNumber(length * 3.2808);
+	document.getElementById('mdistancemr').value = formatNumber(length);
+	document.getElementById('mdistancemi').value = formatNumber(length/1609.34);
 	//$("#distancemeasured").val(length.toFixed(2));
 
 	// If we have a polygon (>2 vertexes in the mvcPolygon MVCArray)
@@ -175,8 +214,8 @@ function measureCalc() {
 		var area = google.maps.geometry.spherical.computeArea(measure.polygon.getPath());
 
 		//$("#marea").text(area.toFixed(1));
-		document.getElementById('mareaft').value = (area * 3.2808).toFixed(2);
-		document.getElementById('mareaac').value = (area * 3.2808).toFixed(2) / 43560;
+		document.getElementById('mareaft').value = formatNumber(area * 3.2808);
+		document.getElementById('mareaac').value = formatNumber(area * 3.2808 / 43560);
 	}
 }
 

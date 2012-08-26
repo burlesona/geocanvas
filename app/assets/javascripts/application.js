@@ -7,4 +7,8 @@ $(function () {
 	$('button#measure_reset').click( function(){
 		measureReset();
 	});
+	$('form#location_search').submit( function(event) {
+		event.preventDefault();
+		locationSearch();
+	});
 });
