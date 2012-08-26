@@ -25,7 +25,7 @@
 		span.value:after { content: "\00B0"; }
 	}
 
-	div.info { margin-top: $baseline; }
+	div.info { margin-top: $baseline; font-size: 12px; }
 }
 
 h1.branding {
