@@ -216,6 +216,7 @@ function measureCalc() {
 		//$("#marea").text(area.toFixed(1));
 		document.getElementById('mareaft').value = formatNumber(area * 10.7639);
 		document.getElementById('mareaac').value = formatNumber((area * 10.7639) / 43560);
+		document.getElementById('mareaha').value = formatNumber(area / 10000);
 	}
 }
 
