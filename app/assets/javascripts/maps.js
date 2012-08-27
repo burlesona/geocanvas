@@ -203,7 +203,7 @@ function measureCalc() {
 	//$("#mdistancemr").text(length.toFixed(1));
 	//$("#mdistancemi").text(length.toFixed(1)/1609.34);
 	//document.getElementById('mdistance').value = (length * 3.2808).toFixed(2);
-	document.getElementById('mdistanceft').value = formatNumber(length * 3.2808);
+	document.getElementById('mdistanceft').value = formatNumber(length * 3.28084);
 	document.getElementById('mdistancemr').value = formatNumber(length);
 	document.getElementById('mdistancemi').value = formatNumber(length/1609.34);
 	//$("#distancemeasured").val(length.toFixed(2));
@@ -214,8 +214,8 @@ function measureCalc() {
 		var area = google.maps.geometry.spherical.computeArea(measure.polygon.getPath());
 
 		//$("#marea").text(area.toFixed(1));
-		document.getElementById('mareaft').value = formatNumber(area * 3.2808);
-		document.getElementById('mareaac').value = formatNumber(area * 3.2808 / 43560);
+		document.getElementById('mareaft').value = formatNumber(area * 10.7639);
+		document.getElementById('mareaac').value = formatNumber((area * 10.7639) / 43560);
 	}
 }
 
