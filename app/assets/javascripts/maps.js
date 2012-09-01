@@ -198,22 +198,14 @@ function measureAdd(latLng) {
 function measureCalc() {
 	// Use the Google Maps geometry library to measure the length of the line
 	var length = google.maps.geometry.spherical.computeLength(measure.line.getPath());
-
-	//$("#mdistanceft").text(length.toFixed(1) * 3.2808);
-	//$("#mdistancemr").text(length.toFixed(1));
-	//$("#mdistancemi").text(length.toFixed(1)/1609.34);
-	//document.getElementById('mdistance').value = (length * 3.2808).toFixed(2);
 	document.getElementById('mdistanceft').value = formatNumber(length * 3.28084);
 	document.getElementById('mdistancemr').value = formatNumber(length);
 	document.getElementById('mdistancemi').value = formatNumber(length/1609.34);
-	//$("#distancemeasured").val(length.toFixed(2));
 
 	// If we have a polygon (>2 vertexes in the mvcPolygon MVCArray)
 	if (measure.mvcPolygon.getLength() > 2) {
 		// Use the Google Maps geometry library to measure the area of the polygon
 		var area = google.maps.geometry.spherical.computeArea(measure.polygon.getPath());
-
-		//$("#marea").text(area.toFixed(1));
 		document.getElementById('mareaft').value = formatNumber(area * 10.7639);
 		document.getElementById('mareaac').value = formatNumber((area * 10.7639) / 43560);
 		document.getElementById('mareaha').value = formatNumber(area / 10000);
@@ -244,10 +236,13 @@ function measureReset() {
 
 	measure.mvcMarkers.clear();
 
-	//$("#mdistance,#marea").text(0);
+	// Clear all the displays
 	document.getElementById('mdistanceft').value = "";
 	document.getElementById('mdistancemr').value = "";
 	document.getElementById('mdistancemi').value = "";
+	document.getElementById('mareaft').value = "";
+	document.getElementById('mareaac').value = "";
+	document.getElementById('mareaha').value = "";
 }
 
 function distVincenty(lat1, lon1, lat2, lon2) {
