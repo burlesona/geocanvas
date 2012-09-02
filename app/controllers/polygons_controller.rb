@@ -3,7 +3,7 @@ class PolygonsController < ApplicationController
 	respond_to :json
 
 	def index
-		@poly = Polygon.new [
+		@poly = [
 			[29.74, -95.40],
 			[29.74, -95.41],
 			[29.75, -95.41],
@@ -11,7 +11,7 @@ class PolygonsController < ApplicationController
 			[29.74, -95.40]
 		]
 
-		respond_with @poly.points
+		respond_with @poly
 	end
 
 	def show
