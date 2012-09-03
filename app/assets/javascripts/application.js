@@ -1,14 +1,9 @@
 //= require jquery
 //= require jquery_ujs
-//= require test
+//= require global
+//= require polygon
+//= require canvas
 
-//$(function () {
-//	initialize();
-//	$('button#measure_reset').click( function(){
-//		measureReset();
-//	});
-//	$('form#location_search').submit( function(event) {
-//		event.preventDefault();
-//		locationSearch();
-//	});
-//});
+$( function() {
+	canvas = new gc.canvas( $('div#map_canvas') );
+});
