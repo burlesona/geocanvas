@@ -1,20 +1,13 @@
 class PolygonsController < ApplicationController
-	# This controller is only part of the API for Javascript interactions
 	respond_to :json
+	before_filter :load_points
 
 	def index
-		@poly = [
-			[29.74, -95.40],
-			[29.74, -95.41],
-			[29.75, -95.41],
-			[29.75, -95.40],
-			[29.74, -95.40]
-		]
-
-		respond_with @poly
 	end
 
 	def show
+		@poly = { id: params[:id], points: @points }
+		respond_with @poly
 	end
 
 	def create
@@ -24,6 +17,17 @@ class PolygonsController < ApplicationController
 	end
 
 	def destroy
+	end
+
+	# Temporary method for testing some JS.
+	def load_points
+		@points= [
+			[29.74, -95.40],
+			[29.74, -95.41],
+			[29.75, -95.41],
+			[29.75, -95.40],
+			[29.74, -95.40]
+		]
 	end
 
 end

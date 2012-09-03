@@ -6,5 +6,4 @@
 
 $( function() {
 	gc.init('div#map_canvas');
-	canvas = new gc.Canvas;
 });
