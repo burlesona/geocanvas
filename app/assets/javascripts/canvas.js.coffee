@@ -2,31 +2,30 @@
 root = exports ? this
 
 class gc.Canvas
-	constructor: (canvas) ->
-		@canvas = $(canvas)[0]
-
-		houston = new google.maps.LatLng(29.75, -95.40)
-		options =
-			zoom: 14
-			center: houston
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-			draggableCursor: "crosshair"
-		@map = new google.maps.Map @canvas, options
-
+	constructor: ->
 		# Manually test drawing a polygon
-		this.drawPoly()
+		this.loadPoly()
 
 		# Add a listener for the click event
-		google.maps.event.addListener @map, "click", (event) ->
+		google.maps.event.addListener gc.map, "click", (event) ->
 			alert event.latLng
 
-	drawPoly: ->
+	loadPoly: ->
 		# Test loading coordinates from the server and drawing a poly.
 		self = this
 		$.ajax
 			url: $('div#map_canvas').data('polygons-url')
 			dataType: 'json'
 			success: (data, textStatus, jqHXR) ->
-				poly = new gc.Polygon( self.map, data )
+				poly = new gc.Polygon( data )
 				poly.draw()
-				console.log poly
+
+###
+Note: The direction this is going, it would probably be best
+if this "Canvas" became the thing we think of as a user's
+drawing space. Ie. A user can have multiple canvases, and when
+they start drawing they can either be on a new canvas, or open
+an old one. That means the functionality in this constructor should
+probably move to the global geoCANVAS (gc) init method,
+while the loadPoly method is only for temporary testing anyway.
+###

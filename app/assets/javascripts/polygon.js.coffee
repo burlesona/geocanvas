@@ -2,7 +2,7 @@
 root = exports ? this
 
 class gc.Polygon
-	constructor: (@map, @points) ->
+	constructor: (@points) ->
 		@coords = ( new google.maps.LatLng(point[0], point[1]) for point in @points )
 
 	defaultOptions:
@@ -12,6 +12,6 @@ class gc.Polygon
 
 	draw: ->
 		poly = new google.maps.Polyline(@defaultOptions)
-		poly.setMap(@map)
+		poly.setMap(gc.map)
 		path = poly.getPath()
 		path.push(coord) for coord in @coords
