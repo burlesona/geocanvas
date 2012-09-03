@@ -1,16 +1,9 @@
 # Global Scope
 root = exports ? this
 
-gc.polygon = (map, points) ->
-	@points = points
-	@map = map
-	@coords = []
-	this.initialize()
-
-gc.polygon.prototype = 
-	initialize: ->
-		@coords.push( new google.maps.LatLng point[0], point[1] ) for point in @points
-		return this
+class gc.Polygon
+	constructor: (@map, @points) ->
+		@coords = ( new google.maps.LatLng(point[0], point[1]) for point in @points )
 
 	defaultOptions:
 		strokeColor: '#000000'

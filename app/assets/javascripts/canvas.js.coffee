@@ -1,20 +1,16 @@
 # Global Scope
 root = exports ? this
 
-gc.canvas = (canvas) ->
-	@canvas = $(canvas)[0]
-	@map = null
-	this.initialize()
+class gc.Canvas
+	constructor: (canvas) ->
+		@canvas = $(canvas)[0]
 
-gc.canvas.prototype =
-	initialize: ->
 		houston = new google.maps.LatLng(29.75, -95.40)
 		options =
 			zoom: 14
 			center: houston
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 			draggableCursor: "crosshair"
-
 		@map = new google.maps.Map @canvas, options
 
 		# Manually test drawing a polygon
@@ -31,6 +27,6 @@ gc.canvas.prototype =
 			url: $('div#map_canvas').data('polygons-url')
 			dataType: 'json'
 			success: (data, textStatus, jqHXR) ->
-				poly = new gc.polygon( self.map, data )
+				poly = new gc.Polygon( self.map, data )
 				poly.draw()
 				console.log poly

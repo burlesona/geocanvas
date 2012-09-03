@@ -5,5 +5,5 @@
 //= require canvas
 
 $( function() {
-	canvas = new gc.canvas( $('div#map_canvas') );
+	canvas = new gc.Canvas( $('div#map_canvas') );
 });
