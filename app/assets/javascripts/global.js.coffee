@@ -18,6 +18,12 @@ root.gc =
 		# Setup routing data for the app
 		this.setRoutes()
 
+		# Make a geocoder available for searching and set search form
+		@geocoder = new google.maps.Geocoder()
+		$('form#location_search').submit (event) =>
+			event.preventDefault()
+			@search $('input#lstring').val()
+
 		# Add a listener for the click event
 		google.maps.event.addListener this.map, "click", (event) ->
 			alert event.latLng
@@ -31,3 +37,11 @@ root.gc =
 			polygons_url: $(@container).data('polygons-url')
 			polygon_url: (id) ->
 				this.polygons_url + "/" + id
+
+	search: (string) ->
+		console.log string
+		@geocoder.geocode {address: string}, (results, status) =>
+			if status == google.maps.GeocoderStatus.OK
+				@map.setCenter results[0].geometry.location
+			else
+				alert status

@@ -19,6 +19,9 @@ class gc.Polygon
 		path = poly.getPath()
 		path.push(coord) for coord in @coords
 
+	area: ->
+		null
+
 
 	# CLASS METHODS ------------------------------ #
 	@find: (id) ->
