@@ -21,14 +21,13 @@ class gc.Polygon
 				latLng = new google.maps.LatLng point[0], point[1]
 				this.newVertex latLng
 
-		# Update the displays with the polygon's information
-		gc.display.object this
-
 	setPolyOptions: (options) ->
 		defaults = 
 			strokeColor: '#FF0000'
 			strokeOpacity: 1.0
 			strokeWeight: 3
+			fillColor: '#FF0000'
+			fillOpacity: 0.5
 		@polyOptions = $.extend defaults, options
 
 	setMarkerOptions: (options) ->
@@ -97,7 +96,10 @@ class gc.Polygon
 
 	# Compute area of polygon
 	area: ->
-		area = google.maps.geometry.spherical.computeArea @path if @path.getLength() > 2
+		if @path.getLength() > 2
+			area = google.maps.geometry.spherical.computeArea @path 
+		else
+			0
 
 	# Compute length of polygon perimeter
 	length: ->
