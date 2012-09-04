@@ -24,13 +24,9 @@ root.gc =
 			event.preventDefault()
 			@search $('input#lstring').val()
 
-		# Add a listener for the click event
-		google.maps.event.addListener @map, "click", (event) ->
-			alert event.latLng
-
-		# Test drawing a poly
-		canvas = new gc.Canvas;
-		canvas.testDraw();
+		# Setup an active canvas. In the future this can be saved
+		# or loaded from the DB.
+		@activeCanvas = new gc.Canvas;
 
 	setRoutes: ->
 		@routes =

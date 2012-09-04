@@ -1,3 +1,7 @@
+// NOTE: This file remains in the app for reference,
+//       it is no longer used, and should be removed
+//       when all the functionality from it has been extracted.
+
 var poly;
 var map;
 var geocoder = new google.maps.Geocoder();

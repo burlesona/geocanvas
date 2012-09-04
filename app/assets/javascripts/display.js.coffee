@@ -13,6 +13,11 @@ gc.display =
 			else
 				selector.text value
 	
+	clear: ->
+		elements = $('#toolbar input:visible')
+		$(e).val '' for e in elements
+
+
 	# Automatically update the display with the attributes of an object
 	object: (o) ->
 		for own format of @area

@@ -2,13 +2,19 @@
 root = exports ? this
 
 class gc.Canvas
-	# Test loading a poly from server and draw it.
-	testDraw: ->
-		poly = gc.Polygon.find(1)
-		poly.draw strokeColor: '#FF0000', strokeWeight: 1
+	constructor: ->
+		# For now, initialize a new poly. Later allow loading.
+		@poly = new gc.Polygon
 
-###
-NOTE:
-	Future direction of this module should be to allow the
-	User to have_many Canvases, which have_many Polygons.
-###
+		# Initialize the UI Handlers
+		this.initHandlers()
+
+	initHandlers: ->
+		# Add a vertex to the poly when a user clicks on the map
+		google.maps.event.addListener gc.map, "click", (event) =>
+			@poly.newVertex event.latLng
+
+		# Reset the poly if a user clicks the reset button
+		$('button#reset_poly').click (event) =>
+			event.preventDefault()
+			@poly.reset()
