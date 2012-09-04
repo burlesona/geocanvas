@@ -25,7 +25,7 @@ root.gc =
 			@search $('input#lstring').val()
 
 		# Add a listener for the click event
-		google.maps.event.addListener this.map, "click", (event) ->
+		google.maps.event.addListener @map, "click", (event) ->
 			alert event.latLng
 
 		# Test drawing a poly
@@ -43,5 +43,7 @@ root.gc =
 		@geocoder.geocode {address: string}, (results, status) =>
 			if status == google.maps.GeocoderStatus.OK
 				@map.setCenter results[0].geometry.location
+				gc.display.location.lat results[0].geometry.location.lat()
+				gc.display.location.lng results[0].geometry.location.lng()
 			else
 				alert status

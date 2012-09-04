@@ -10,37 +10,37 @@
 			= button_tag 'Search', id: 'location_search'
 		.coords
 			%span.text Lat:
-			%span.value#mlat 29.75
+			%span.value#location_lat 29.75
 			%span.text Lng:
-			%span.value#mlon -95.40
+			%span.value#location_lng -95.40
 
 	.segment#distances
 		.input
-			= label_tag :mdistanceft, "Feet"
-			= text_field_tag :mdistanceft
+			= label_tag :length_ft, "Feet"
+			= text_field_tag :length_ft
 
 		.input
-			= label_tag :mdistancemr, "Meters"
-			= text_field_tag :mdistancemr
+			= label_tag :length_m, "Meters"
+			= text_field_tag :length_m
 
 		.input
-			= label_tag :mdistancemi, "Miles"
-			= text_field_tag :mdistancemi
+			= label_tag :length_mi, "Miles"
+			= text_field_tag :length_mi
 
 		= hidden_field_tag :distancemeasured
 
 	.segment#area
 		.input
-			= label_tag :mareaft, "Sq. Feet"
-			= text_field_tag :mareaft
+			= label_tag :area_sqft, "Sq. Feet"
+			= text_field_tag :area_sqft
 		
 		.input
-			= label_tag :mareaac, "Acres"
-			= text_field_tag :mareaac
+			= label_tag :area_ac, "Acres"
+			= text_field_tag :area_ac
 
 		.input
-			= label_tag :mareaha, "Hectares"
-			= text_field_tag :mareaha
+			= label_tag :area_ha, "Hectares"
+			= text_field_tag :area_ha
 
 	.segment#clear
 		= button_tag 'Clear Markers', type: 'button', id: 'measure_reset'
