@@ -44,7 +44,7 @@ class gc.Polygon
 		@markers.forEach (marker) -> # CoffeeScript for ... in doesn't work on MVC arrays for some reason.
 			marker.setMap(null)
 		@markers.clear()
-		gc.display.clear()
+		gc.display.clear() #In the future the polygon may not want to clear the display, because another poly's info may be being displayed
 
 	# MANIPULATION METHODS ------------------------ #
 

@@ -39,7 +39,7 @@ gc.display =
 
 	# Unit conversions for Area
 	area:
-		meters: (m) ->
+		squareMeters: (m) ->
 			area = m
 			gc.display.set 'area_sqm', area
 		squareFeet: (m) ->

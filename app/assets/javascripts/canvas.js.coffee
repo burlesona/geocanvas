@@ -4,7 +4,7 @@ root = exports ? this
 class gc.Canvas
 	constructor: ->
 		# For now, initialize a new poly. Later allow loading.
-		@poly = new gc.Polygon
+		@poly = gc.Polygon.find 3
 
 		# Initialize the UI Handlers
 		this.initHandlers()
